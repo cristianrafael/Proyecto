@@ -6,7 +6,7 @@
     margin-top: 40px;
   }
 </style>
-<div class="container">
+<div class="container mt-4 mb-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
 

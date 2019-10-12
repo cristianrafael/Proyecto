@@ -12,11 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('candidato','CandidatoController');
-
+    return view('home');
+})->name('index');
 
 Auth::routes();
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('candidato','CandidatoController');
