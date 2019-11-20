@@ -1,1 +1,1 @@
-Proyecto para programacion para internet Por Cristian Romero 216787507
+Proyecto de programacion para internet Por Cristian Romero 216787507
