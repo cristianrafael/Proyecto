@@ -30,7 +30,18 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-
+  <!-- JAVASCRIPTS -->
+  <script src="{{asset('plugins/jquery/dist/jquery.min.js')}}"></script>
+  <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
+  <script src="{{asset('plugins/tether/js/tether.min.js')}}"></script>
+  <script src="{{asset('plugins/raty/jquery.raty-fa.js')}}"></script>
+  <script src="{{asset('plugins/bootstrap/dist/js/popper.min.js')}}"></script>
+  <script src="{{asset('plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+  <script src="{{asset('plugins/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
+  <script src="{{asset('plugins/fancybox/jquery.fancybox.pack.js')}}"></script>
+  <script src="{{asset('plugins/smoothscroll/SmoothScroll.min.js')}}"></script>
+  
+  @yield('scripts')
 </head>
 
 <body class="body-wrapper">
@@ -85,10 +96,10 @@
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
 							<li class="nav-item">
-								<a class="nav-link login-button" href="index.html">Login</a>
+                <a class="nav-link login-button" href="{{ route('login') }}" >Iniciar Sesion</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link add-button" href="#"><i class="fa fa-plus-circle"></i> Add Listing</a>
+								<a class="nav-link add-button" href="{{ route('register')}}"><i class="fa fa-plus-circle"></i> Registrarse</a>
 							</li>
 						</ul>
 					</div>
@@ -190,17 +201,6 @@
       <a id="top" class="" href=""><i class="fa fa-angle-up"></i></a>
     </div>
 </footer>
-
-  <!-- JAVASCRIPTS -->
-  <script src="{{asset('plugins/jquery/dist/jquery.min.js')}}"></script>
-  <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-  <script src="{{asset('plugins/tether/js/tether.min.js')}}"></script>
-  <script src="{{asset('plugins/raty/jquery.raty-fa.js')}}"></script>
-  <script src="{{asset('plugins/bootstrap/dist/js/popper.min.js')}}"></script>
-  <script src="{{asset('plugins/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-  <script src="{{asset('plugins/jquery-nice-select/js/jquery.nice-select.min.js')}}"></script>
-  <script src="{{asset('plugins/fancybox/jquery.fancybox.pack.js')}}"></script>
-  <script src="{{asset('plugins/smoothscroll/SmoothScroll.min.js')}}"></script>
 </body>
 
 </html>

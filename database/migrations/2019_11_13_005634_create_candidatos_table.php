@@ -21,10 +21,10 @@ class CreateCandidatosTable extends Migration
             $table->enum('genero', ['Hombre', 'Mujer']);
             $table->unsignedBigInteger('estado_id');
             $table->unsignedBigInteger('ciudad_id');
-            $table->string('estado_civil');
-            $table->string('telefono');
-            $table->longText('descripcion_personal');
-            $table->longText('descripcion_profesional');
+            $table->string('estado_civil')->nullable();
+            $table->string('telefono')->nullable();
+            $table->longText('descripcion_personal')->nullable();
+            $table->longText('descripcion_profesional')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
