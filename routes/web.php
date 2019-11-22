@@ -14,7 +14,11 @@
 
 Route::get('/', function () { return view('home'); })->name('index');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middleware('verified');
 Route::resource('candidato','CandidatoController');
+
+
+Route::get('/back', function() { return view('admin.dashboard'); })->name('dashboard');

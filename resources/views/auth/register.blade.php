@@ -82,10 +82,10 @@
                             <label for="estado" class="col-md-4 col-form-label text-md-right">{{ __('Estado') }}</label>
 
                             <div class="col-md-6">
-                                <select id="estado" class="form-control @error('estado') is-invalid @enderror" name="edad" value="{{ old('estado') }}" required autocomplete="estado">
-                                    <option value="">Seleccione un estado</option>
+                                <select id="estado" class="form-control @error('estado') is-invalid @enderror" name="estado" value="{{ old('estado') }}" required autocomplete="estado">
+                                    <option value="" selected>Seleccione un estado</option>
                                     @foreach($estados as $estado)
-                                        <option value="{{$estado->id}}">{{$estado->nombre}}</option>
+                                        <option value="{{$estado->id}}" {{ old('estado') == $estado->id ? 'selected' : ''}}>{{$estado->nombre}}</option>
                                     @endforeach
                                 </select>
                                 @error('estado')
@@ -100,9 +100,9 @@
                             <label for="ciudad" class="col-md-4 col-form-label text-md-right">{{ __('Ciudad') }}</label>
 
                             <div class="col-md-6">
-                                <select id="ciudad" class="form-control @error('ciudad') is-invalid @enderror" name="edad" value="{{ old('ciudad') }}" required autocomplete="ciudad">
-                                    <option value="">Seleccione un ciudad</option>
-                                </select>
+                                <select id="ciudad" class="form-control @error('ciudad') is-invalid @enderror" name="ciudad" required autocomplete="ciudad">
+                                    <option value="" selected>Seleccione una ciudad</option>
+                                </select>                               
                                 @error('ciudad')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -114,7 +114,7 @@
 
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
@@ -138,7 +138,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Registrarse') }}
                                 </button>
                             </div>
                         </div>
@@ -151,9 +151,41 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
-        $(function(){
-            alert('asdas');
+   <script type="text/javascript">
+        //Si la validacion retorna la vista, recuperamos el valor anterior de la ciudad
+        $(document).ready(function(){
+
+            var estadoOld = "{{ old('estado')}}";
+            var ciudadOld = "{{ old('ciudad')}}";
+
+            if(estadoOld)
+            {
+                $.get('/api/ciudades/' + estadoOld , function(data){
+                    var opciones = '<option value="">Seleccione una ciudad</option>';
+                    for(var i = 0; i < data.length; ++i)
+                        opciones += '<option value="' + data[i].id + '"' + (ciudadOld == data[i].id ? 'selected' : '') + '>' + data[i].nombre + '</option>';    
+                    $('#ciudad').html(opciones);                
+                });
+            }
         });
-    </script>
+
+        //Funcion para el cambio de estado en el select
+        $(function(){
+            $('#estado').on('change', cargarCiudades);
+        });
+        function cargarCiudades() {
+            var estado_id = $(this).val();
+            if(!estado_id)
+            {
+                $('#ciudad').html('<option value="">Seleccione una ciudad</option>');
+                return;
+            }
+            $.get('/api/ciudades/' + estado_id , function(data){
+                var opciones = '<option value="">Seleccione una ciudad</option>';
+                for(var i = 0; i < data.length; ++i)
+                    opciones += '<option value="' + data[i].id + '" >' + data[i].nombre + '</option>';
+                $('#ciudad').html(opciones);                
+            });
+        };
+   </script>
 @endsection
