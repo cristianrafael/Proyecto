@@ -18,4 +18,8 @@ class HomeController extends Controller
         $user = Auth::user();
         return view('candidato.dashboard')->with(compact($user));
     }
+    public function index()
+    {
+        return view('home');
+    }
 }

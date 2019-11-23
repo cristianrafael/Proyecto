@@ -12,13 +12,21 @@
 */
 
 
+
+//Rutas para el front
 Route::get('/', function () { return view('home'); })->name('index');
 
 Auth::routes(['verify' => true]);
 
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 //Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middleware('verified');
 Route::resource('candidato','CandidatoController');
 
 
-Route::get('/back', function() { return view('admin.dashboard'); })->name('dashboard');
+//Rutas para el back
+Route::prefix('admin')->group(function() {
+
+	Route::get('/', function() { return view('admin.home'); })->name('admin')->middleware('admin');
+
+});
