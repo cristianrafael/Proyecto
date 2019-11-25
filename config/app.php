@@ -175,6 +175,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //Servicio de imagenes
+        App\Providers\ImageServiceProvider::class,
+
     ],
 
     /*
@@ -226,6 +229,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        //Alias para el provider de imagenes
+        'Images' => App\Providers\ImageServiceProvider::class,
     ],
 
 ];

@@ -16,17 +16,22 @@
 //Rutas para el front
 Route::get('/', function () { return view('home'); })->name('index');
 
+Route::get('/img/{key}','MediaController@getImage');
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 //Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard')->middleware('verified');
-Route::resource('candidato','CandidatoController');
+
 
 
 //Rutas para el back
-Route::prefix('admin')->group(function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
-	Route::get('/', function() { return view('admin.home'); })->name('admin')->middleware('admin');
+	Route::get('/', function() { return view('admin.home'); })->name('admin');
+	Route::resource('candidato','CandidatoController');
+	Route::resource('candidato.archivos','ArchivoController')->except('edit','update','show');
 
+	Route::get('/download/{archivo}','ArchivoController@download')->name('download');
 });
