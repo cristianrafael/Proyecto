@@ -30,8 +30,19 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
 	Route::get('/', function() { return view('admin.home'); })->name('admin');
+
 	Route::resource('candidato','CandidatoController');
 	Route::resource('candidato.archivos','ArchivoController')->except('edit','update','show');
 
+	
 	Route::get('/download/{archivo}','ArchivoController@download')->name('download');
+
+
+	
+	Route::delete('postulacion/{candidato}/{vacante}','PostulacionController@destroy')->name('postulacion.destroy');
+	Route::get('postulacion/{candidato}/{vacante}','PostulacionController@store')->name('postulacion.store');
+
+
+	Route::resource('vacante','VacanteController');
+		Route::get('vacante/{vacante}/postulaciones');
 });

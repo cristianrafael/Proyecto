@@ -25,4 +25,11 @@ class Candidato extends Model
   {
     return $this->hasMany('App\Archivo');
   }
+
+  //Como la tabla no se llama candidato_vacante entonces establecemos la tabla que los relaciona
+  public function postulaciones()
+  {
+    //Las llaves foraneas si estan por convencion (candidato_id y vacante_id) asi que no necesitamos definir las relaciones
+    return $this->belongsToMany('App\Vacante','postulacions');
+  }
 }

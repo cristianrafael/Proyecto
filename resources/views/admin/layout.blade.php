@@ -79,11 +79,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
+            <a href="{{route('vacante.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-clipboard-list"></i><p>Vacantes</p>
             </a>
           </li>
 

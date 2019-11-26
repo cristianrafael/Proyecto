@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Candidato;
+use App\Vacante;
 use App\Estado;
 use App\User;
 
@@ -30,7 +31,10 @@ class CandidatoController extends Controller
     public function show(Candidato $candidato)
     {
         $candidato->user;
-        return view ('admin.candidatos.show',compact('candidato'));
+        $candidato->load('postulaciones');
+        
+        $vacantes = Vacante::all();
+        return view ('admin.candidatos.show',compact('candidato','vacantes'));
     }
     public function edit(Candidato $candidato)
     {
