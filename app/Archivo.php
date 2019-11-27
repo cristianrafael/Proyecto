@@ -12,4 +12,8 @@ class Archivo extends Model
     {
         return $this->morphTo();
     }
+    public function candidato()
+    {
+    	return $this->belongsTo('App\Candidato');
+    }
 }

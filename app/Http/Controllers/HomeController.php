@@ -13,13 +13,9 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function dashboard()
-    {
-        $user = Auth::user();
-        return view('candidato.dashboard')->with(compact($user));
-    }
     public function index()
     {
         return view('home');
     }
+
 }

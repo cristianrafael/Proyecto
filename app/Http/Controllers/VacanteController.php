@@ -47,10 +47,7 @@ class VacanteController extends Controller
     public function show(Vacante $vacante)
     {
         $vacante->load('postulaciones');
-        $candidatos = Candidato::all();
-        foreach ($candidatos as $key => $candidato)
-            $candidato->user;
-
+        $candidatos = Candidato::with('user')->get();
         return view('admin.vacante.show',compact('vacante','candidatos'));
     }
 

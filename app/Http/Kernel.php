@@ -41,6 +41,19 @@ class Kernel extends HttpKernel
             'throttle:60,1',
             'bindings',
         ],
+
+        //El middleware admin corrobora que el usuario tenga una sesion activa y que seas administrador
+        'admin' => [
+            \App\Http\Middleware\Authenticate::class,
+            \App\Http\Middleware\Administrador::class
+        ],
+
+        //El middleware candidato tambien necesita una sesion activoa y que no seas administrador(candidato / usuario que se registra en la pagina)
+        'candidato' => [
+            \App\Http\Middleware\Authenticate::class,
+            \App\Http\Middleware\Candidato::class,
+            \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class
+        ]
     ];
 
     /**
@@ -60,8 +73,7 @@ class Kernel extends HttpKernel
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'admin' => \App\Http\Middleware\Administrador::class
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class
     ];
 
     /**
