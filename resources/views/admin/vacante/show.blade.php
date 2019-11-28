@@ -54,9 +54,50 @@
                 <div class="tab-content" id="custom-tabs-one-tabContent">
                   <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
 
+                    <div class="row d-flex align-items-stretch">
+                        <div class="col-12 d-flex align-items-stretch justify-content-center">
+                          <div class="card bg-light col-12 col-sm-8 col-md-10">
+                            <div class="card-header text-muted border-bottom-0 row" style="color: white !important">
+                              Descripción de la vacante
+                            </div>
+                            <div class="card-body pt-2">
+                              <div class="row">
+                                <div class="col-12 text-center">
+                                  <h2 class="lead"><b>{{$vacante->titulo}}</b></h2>
+                                  <p class="text-muted text-sm"><b><p>Descripción del puesto</p></b><p>{{$vacante->descripcion_puesto}} </p>
+                                  <ul class="ml-4 mb-0 fa-ul text-muted">
+                                    <li class="medium"><span class="fa-li"></span><b>Sueldo: </b>{{$vacante->sueldo}}</li>
+                                    <li class="medium"><span class="fa-li"></span><b>Ubicación: </b>{{$vacante->ubicacion}}</li>
+                                    <li class="medium"><span class="fa-li"></span><b>Horario: </b> {{$vacante->horario}}</li>
+                                    <li class="medium"><span class="fa-li"></span><b>Experiencia: </b> {{$vacante->experiencia}}</li>
+                                    <li class="medium"><span class="fa-li"></span><b>Numero de vacantes: </b> {{$vacante->no_vacantes}}</li>
+                                    <li class="medium"><span class="fa-li"></span><b>Disponibilidad para viajar: </b> {{$vacante->dis_viajar ? 'Si' : 'No'}}</li>
+                                    <li class="medium"><span class="fa-li"></span><b>Disponibilidad para reubicarse: </b> {{$vacante->dis_reubicarse ? 'Si' : 'No'}}</li><br>
+                                    <li class="medium"><span class="fa-li"></span><b>Creada el: </b> {{$vacante->created_at}}</li>
+                                  </ul>
+                                </div>
+                                
+                              </div>
+                            </div>
+                            <div class="card-footer row">
+                              <div class="text-right">
+                              
+                                <a href="{{route('vacante.edit', $vacante->id)}}" class="btn btn-sm btn-primary">
+                                  <i class="fas fa-user"></i> Editar
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+
+
                   </div>
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-
                     <div class="row d-flex align-items-stretch">
                       @foreach($vacante->postulaciones as $candidato)
                         <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">

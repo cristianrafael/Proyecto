@@ -68,7 +68,7 @@
 								<a class="nav-link" href="{{ route('index') }}">Home</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{{ route('candidato.index') }}">CRUD</a>
+								<a class="nav-link" href="{{ route('front.vacante.index') }}">Vacantes</a>
 							</li>
 							<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

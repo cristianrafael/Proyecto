@@ -8,7 +8,7 @@ class Image extends Model
 {
     protected $guarded = array('id');
 
-    public user()
+    public function user()
     {
     	return $this->belongsTo('App\User');
     }

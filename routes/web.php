@@ -20,14 +20,26 @@ Auth::routes(['verify' => true]);
 Route::get('/', function () { return view('home'); })->name('index'); //Index publico 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
+	//Dashboard
+	Route::get('/dashboard', 'CandidatoFrontController@dashboard')->name('dashboard')->middleware('candidato');
 
-Route::get('/dashboard', 'CandidatoFrontController@dashboard')->name('dashboard')->middleware('candidato');
+	//Mi perfil
+	Route::get('/dashboard/profile', 'CandidatoFrontController@profile')->name('dashboard.profile')->middleware('candidato');
+	Route::patch('/dashboard/profile/update', 'CandidatoFrontController@profileUpdate')->name('dashboard.profile.update')->middleware('candidato');
 
-Route::get('/dashboard/profile', 'CandidatoFrontController@profile')->name('dashboard.profile')->middleware('candidato');
-Route::patch('/dashboard/profile/update', 'CandidatoFrontController@profileUpdate')->name('dashboard.profile.update')->middleware('candidato');
+	//Mis referencias/archivos
+	Route::get('/dashboard/files', 'CandidatoFrontController@files')->name('dashboard.files')->middleware('candidato');
+	Route::get('/dashboard/files/{archivo}', 'CandidatoFrontController@downloadFile')->name('dashboard.files.download')->middleware('candidato');
+	Route::delete('/dashboard/files/{archivo}', 'CandidatoFrontController@destroyFile')->name('dashboard.files.destroy')->middleware('candidato');
+	Route::post('/dashboard/files', 'CandidatoFrontController@storeFile')->name('dashboard.files.store')->middleware('candidato');
 
-Route::get('/dashboard/files', 'CandidatoFrontController@files')->name('dashboard.files')->middleware('candidato');
-Route::get('/dashboard/postulations', 'CandidatoFrontController@postulations')->name('dashboard.postulations')->middleware('candidato');
+	//Postulaciones
+	Route::get('/dashboard/postulations', 'CandidatoFrontController@postulations')->name('dashboard.postulations')->middleware('candidato');
+	Route::delete('/dashboard/postulations/{vacante}', 'CandidatoFrontController@destroyPostulation')->name('dashboard.postulations.destroy')->middleware('candidato');
+
+	//Catologo de vacantes
+	Route::get('/vacantes','VacanteFrontController@index')->name('front.vacante.index');
+	Route::get('/vacantes/{vacante}','VacanteFrontController@show')->name('front.vacante.show');
 
 
 

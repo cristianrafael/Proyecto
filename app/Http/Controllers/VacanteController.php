@@ -28,15 +28,13 @@ class VacanteController extends Controller
             'descripcion_puesto' => 'required|string|max:4294967295',
             'no_vacantes' => 'required|integer|min:1',
             'horario' => 'required|string|max:255',
-            'experiencia' => 'required|string|max:255',
-            'dis_viajar' => 'required|integer|min:1|max:1',
-            'dis_reubicarse' => 'required|integer|min:1|max:1'
+            'experiencia' => 'required|string|max:255'
         ]);
 
         $vacante = new Vacante();
 
-        $vacante->dis_viajar = $request->dis_viajar ?? 0;
-        $vacante->dis_reubicarse = $request->dis_reubicarse ?? 0;
+        $vacante->dis_viajar = $request->dis_viajar ? 1 : 0;
+        $vacante->dis_reubicarse = $request->dis_reubicarse ? 1 : 0;
 
         $vacante->fill($request->all());
         $vacante->save();
@@ -60,8 +58,8 @@ class VacanteController extends Controller
     {
         $vacante->fill($request->all());
 
-        $vacante->dis_viajar =  $request->dis_viajar ?? 0;
-        $vacante->dis_reubicarse =  $request->dis_reubicarse ?? 0;
+        $vacante->dis_viajar =  $request->dis_viajar ? 1 : 0;
+        $vacante->dis_reubicarse =  $request->dis_reubicarse ? 1 : 0;
 
         $vacante->save();
         return redirect()->back()->with('success','Vacante modificada correctamente!');
