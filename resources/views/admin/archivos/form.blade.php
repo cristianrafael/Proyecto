@@ -32,8 +32,28 @@
               <h3 class="card-title">Archivos</h3>
             </div>
 
+
+
             <!-- /.card-header -->
             <div class="card-body">
+               @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                </div><br />
+              @endif
+              
+               @if (session('success'))
+                <div class="alert alert-success">
+                  <ul>
+                    <li>{{ session('success') }}</li>
+                  </ul>
+                </div><br />
+              @endif
+              
               {!! Form::open(['route' => ['candidato.archivos.store',$candidato->id], 'files' => true]) !!}
             <div class="form-group">
                 {!! Form::label('archivo', 'Carga de Archivo')!!}

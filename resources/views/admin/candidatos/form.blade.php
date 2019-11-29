@@ -144,14 +144,16 @@
                     <div class="form-group form-row">
                       <div class="col">
                         <label for="password">Contraseña: (Min 8 caracteres)</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" {{ !$candidato ? 'required' : ''}} autocomplete="new-password">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" {{ !(isset($candidato)) ? 'required' : ''}} autocomplete="new-password">
                       </div>
                       <div class="col">
                         <label for="password-confirm">Confirmar Contraseña:</label>
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" {{ !$candidato ? 'required' : ''}} autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" {{ !(isset($candidato)) ? 'required' : ''}} autocomplete="new-password">
                       </div>
                     </div>
+                    @if(isset($candidato))
                     <label style="font-size: small; color: red;">* Escriba una contraseña SOLO si desea cambiarla</label>
+                    @endif
 
                 </form>
                   @if(isset($candidato))

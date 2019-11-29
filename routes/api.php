@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+//Esta ruta sirve para los select en cascada de los formularios
 Route::get('/ciudades/{estado_id}','CiudadController@byEstado');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

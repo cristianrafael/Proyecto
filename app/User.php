@@ -42,4 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne('App\Candidato');
     }
+
+    public function setNameAttribute($value) //Muttator
+    {
+        $this->attributes['name'] = ucwords($value);
+    }
 }

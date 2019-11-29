@@ -20,6 +20,9 @@ class ArchivoController extends Controller
     }
     public function store(Candidato $candidato, Request $request)
     {
+        if(!$request->archivo)
+            return redirect()->back()->withErrors(['El archivo no es valido']);
+        
         if($request->archivo->isValid())
         {
             $nombreHash = $request->archivo->store('');
@@ -43,7 +46,7 @@ class ArchivoController extends Controller
             $archivo->delete();
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Archivo eliminado correctamente!');
     }
     public function download(Archivo $archivo)
     {

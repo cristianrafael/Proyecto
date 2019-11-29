@@ -47,7 +47,7 @@ Route::get('/home', 'HomeController@home')->name('home')->middleware('verified')
 
 //Rutas para el back (Solo administrador)
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
-	Route::get('/', function() { return view('admin.home'); })->name('admin');
+	Route::get('/','AdminController@index')->name('admin');
 
 	Route::resource('categoria','CategoriaController', ['parameters' => ['categoria' => 'categoria']]);
 	Route::get('asignacion/{categoria}/{vacante}','AsignacionController@store')->name('asignacion.store');
@@ -64,8 +64,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 	Route::resource('vacante','VacanteController');
 		Route::get('vacante/{vacante}/postulaciones');
 
-	
 });
+
 
 //Rutas de servicios
 Route::get('/img/{key}','MediaController@getImage'); //Imagenes

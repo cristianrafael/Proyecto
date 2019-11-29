@@ -33,7 +33,30 @@
 
             <!-- /.card-header -->
             <div class="card-body">
-            
+                
+                  <div class="card-body">
+
+
+                 @if ($errors->any())
+                <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+                </div><br />
+              @endif
+              
+                               
+               @if (session('success'))
+                <div class="alert alert-success">
+                  <ul>
+                    <li>{{ session('success') }}</li>
+                  </ul>
+                </div><br />
+              @endif
+              
+
                 <div class="form-group row mb-3">
                     <div class="col">
                         <a href="{{ route('candidato.archivos.create',['candidato' => $candidato->id]) }}" class="btn btn-success"><i class="fas fa-plus"></i> Nuevo</a>
@@ -55,7 +78,7 @@
                                 <a href="{{ route('download', $archivo->id) }}" class="btn btn-sm btn-success">Descargar</a>
                             </td>
                             <td>
-                                {!! Form::open(['route' => ['candidato.archivos.destroy', $candidato->id, $archivo->id]]) !!}
+                                {!! Form::open(['route' => ['candidato.archivos.destroy', $candidato->id, $archivo->id], 'method' => 'DELETE']) !!}
                                     <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
                                 {!! Form::close() !!}
                             </td>

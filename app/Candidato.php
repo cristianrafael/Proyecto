@@ -11,11 +11,14 @@ class Candidato extends Model
 
   protected $appends = ['image'];
 
-  public function getImageAttribute()
+  public function getImageAttribute() //Accessor
   {
     return Images::getUrl($this->user->image_id);
   }
-
+  public function setNombreAttribute($value) //Muttator
+  {
+    $this->attributes['nombre'] = ucwords($value);
+  }
   public function user()
   {
  		return $this->belongsTo('App\User');
