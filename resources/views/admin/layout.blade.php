@@ -84,13 +84,13 @@
             </a>
           </li>
 
-          <li class="nav-header">CONFIGURACIÓN</li>
           <li class="nav-item">
-            <a href="https://adminlte.io/docs/3.0" class="nav-link">
-              <i class="nav-icon fas fa-user"></i>
-              <p>Mi perfil</p>
+            <a href="{{route('categoria.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-stream"></i><p>Categorias</p>
             </a>
           </li>
+
+          <li class="nav-header">CONFIGURACIÓN</li>
           <li class="nav-item">
             <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="nav-icon fas fa-sign-out-alt"></i>

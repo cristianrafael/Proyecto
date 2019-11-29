@@ -110,6 +110,12 @@ class CandidatoFrontController extends Controller
         $user->candidato->load('postulaciones');
         return view ('candidato.postulations',compact('user'));
     }
+    public function storePostulation(Vacante $vacante)
+    {
+        $user = Auth::user();
+        $user->candidato->postulaciones()->attach($vacante->id);
+        return redirect()->back()->with('success','Postulado correctamente!');
+    }
     public function destroyPostulation(Vacante $vacante)
     {
         $user = Auth::user();

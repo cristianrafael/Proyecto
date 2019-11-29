@@ -15,4 +15,8 @@ class Vacante extends Model
       //Las llaves foraneas si estan por convencion (candidato_id y vacante_id) asi que no necesitamos definir las relaciones
       return $this->belongsToMany('App\Candidato','postulacions');
     }
+    public function categorias()
+    {
+		return $this->belongsToMany('App\Categoria','asignacions');
+    }
 }

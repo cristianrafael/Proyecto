@@ -12,7 +12,7 @@ class PostulacionController extends Controller
 {
     public function store(Candidato $candidato, Vacante $vacante)
     {
-        $candidato->postulaciones()->sync($vacante->id);
+        $candidato->postulaciones()->attach($vacante->id);
         return redirect()->back()->with('success','Postulado correctamente!');
     }
     public function destroy(Candidato $candidato, Vacante $vacante)

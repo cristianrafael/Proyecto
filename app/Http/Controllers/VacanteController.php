@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Vacante;
 use App\Candidato;
+use App\Categoria;
 use Illuminate\Http\Request;
 
 class VacanteController extends Controller
@@ -45,8 +46,10 @@ class VacanteController extends Controller
     public function show(Vacante $vacante)
     {
         $vacante->load('postulaciones');
+        $vacante->load('categorias');
         $candidatos = Candidato::with('user')->get();
-        return view('admin.vacante.show',compact('vacante','candidatos'));
+        $categorias = Categoria::all();
+        return view('admin.vacante.show',compact('vacante','candidatos','categorias'));
     }
 
     public function edit(Vacante $vacante)

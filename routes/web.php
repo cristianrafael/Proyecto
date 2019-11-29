@@ -17,8 +17,9 @@
 
 Auth::routes(['verify' => true]);
 
-Route::get('/', function () { return view('home'); })->name('index'); //Index publico 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/', 'HomeController@index')->name('index'); //Index publico 
+Route::get('/home', 'HomeController@home')->name('home')->middleware('verified');
+	
 
 	//Dashboard
 	Route::get('/dashboard', 'CandidatoFrontController@dashboard')->name('dashboard')->middleware('candidato');
@@ -35,17 +36,23 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 	//Postulaciones
 	Route::get('/dashboard/postulations', 'CandidatoFrontController@postulations')->name('dashboard.postulations')->middleware('candidato');
+	Route::get('/dashboard/postulations/{vacante}', 'CandidatoFrontController@storePostulation')->name('dashboard.postulations.store')->middleware('candidato');
 	Route::delete('/dashboard/postulations/{vacante}', 'CandidatoFrontController@destroyPostulation')->name('dashboard.postulations.destroy')->middleware('candidato');
 
 	//Catologo de vacantes
 	Route::get('/vacantes','VacanteFrontController@index')->name('front.vacante.index');
 	Route::get('/vacantes/{vacante}','VacanteFrontController@show')->name('front.vacante.show');
-
+	Route::post('/vacantes','HomeController@busqueda')->name('busqueda');
 
 
 //Rutas para el back (Solo administrador)
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 	Route::get('/', function() { return view('admin.home'); })->name('admin');
+
+	Route::resource('categoria','CategoriaController', ['parameters' => ['categoria' => 'categoria']]);
+	Route::get('asignacion/{categoria}/{vacante}','AsignacionController@store')->name('asignacion.store');
+	Route::delete('asignacion/{categoria}/{vacante}','AsignacionController@destroy')->name('asignacion.destroy');
+
 
 	Route::resource('candidato','CandidatoController');
 	Route::resource('candidato.archivos','ArchivoController')->except('edit','update','show');	
@@ -56,6 +63,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
 
 	Route::resource('vacante','VacanteController');
 		Route::get('vacante/{vacante}/postulaciones');
+
+	
 });
 
 //Rutas de servicios

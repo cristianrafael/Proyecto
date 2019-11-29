@@ -34,7 +34,7 @@
                   <div class="">
                     <ul class="list-inline justify-content-center">
                       <li class="list-inline-item">
-                        <a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="{{route('dashboard.files.download',$vacante->id)}}">
+                        <a data-toggle="tooltip" data-placement="top" title="Tooltip on top" class="view" href="{{route('front.vacante.show',$vacante->id)}}">
                           <i class="fa fa-eye"></i>
                         </a>    
                       </li>

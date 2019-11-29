@@ -24,6 +24,14 @@
       <div class="row">
         <div class="col-12">
 
+          @if (session('success'))
+                <div class="alert alert-success">
+                  <ul>
+                    <li>{{ session('success') }}</li>
+                  </ul>
+                </div><br />
+              @endif
+              
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">{{count($candidatos)}} {{ __('Candidatos') }} registrados</h3>

@@ -48,10 +48,17 @@
                   <li class="nav-item">
                     <a class="nav-link" id="custom-tabs-one-messages-tab" data-toggle="pill" href="#custom-tabs-one-messages" role="tab" aria-controls="custom-tabs-one-messages" aria-selected="false">Candidatos Disponibles</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-categories-tab" data-toggle="pill" href="#custom-tabs-one-categories" role="tab" aria-controls="custom-tabs-one-categories" aria-selected="false">Categorias Asignadas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="custom-tabs-one-categories-disponibles-tab" data-toggle="pill" href="#custom-tabs-one-categories-disponibles" role="tab" aria-controls="custom-tabs-one-categories-disponibles" aria-selected="false">Categorias Disponibles</a>
+                  </li>
                 </ul>
               </div>
               <div class="card-body">
                 <div class="tab-content" id="custom-tabs-one-tabContent">
+
                   <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
 
                     <div class="row d-flex align-items-stretch">
@@ -90,13 +97,9 @@
                           </div>
                         </div>
                       </div>
-
-
-
-
-
-
                   </div>
+
+
                   <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
                     <div class="row d-flex align-items-stretch">
                       @foreach($vacante->postulaciones as $candidato)
@@ -132,8 +135,9 @@
                         </div>
                       @endforeach
                       </div>
-
                   </div>
+
+
                   <div class="tab-pane fade" id="custom-tabs-one-messages" role="tabpanel" aria-labelledby="custom-tabs-one-messages-tab">
                               
 
@@ -168,6 +172,55 @@
                             </table>
                           </div>
                   </div>
+
+                  <div class="tab-pane fade" id="custom-tabs-one-categories" role="tabpanel" aria-labelledby="custom-tabs-one-categories-tab">
+                              
+
+
+
+                          <div class="card-body">
+                            <table class="table table-bordered table-striped" id="tabla" style="font-size: small;">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Nombre</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                 @foreach($vacante->categorias as $categoria)
+                                <tr>
+                                  <td>{{$categoria['nombre']}}</td>
+                                  <td><a href="{{ route('asignacion.destroy', [$categoria->id, $vacante->id]) }}" class="btn btn-danger btn-sm col-12"><i class="fas fa-list"></i> Eliminar categoria</a></td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                          </div>
+                  </div>
+
+                   <div class="tab-pane fade" id="custom-tabs-one-categories-disponibles" role="tabpanel" aria-labelledby="custom-tabs-one-categories-disponibles-tab">
+                              
+
+                          <div class="card-body">
+                            <table class="table table-bordered table-striped" id="tabla" style="font-size: small;">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Nombre</th>
+                                  <th scope="col"></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                 @foreach($categorias as $categoria)
+                                <tr>
+                                  <td>{{$categoria['nombre']}}</td>
+                                  <td><a href="{{ route('asignacion.store', [$categoria->id, $vacante->id]) }}" class="btn btn-success btn-sm col-12"><i class="fas fa-list"></i> Asignar categoria</a></td>
+                                </tr>
+                                @endforeach
+                              </tbody>
+                            </table>
+                          </div>
+                  </div>
+
                 </div>
               </div>
               <!-- /.card -->

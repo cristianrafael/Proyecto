@@ -70,11 +70,10 @@
 							<li class="nav-item">
 								<a class="nav-link" href="{{ route('front.vacante.index') }}">Vacantes</a>
 							</li>
-							<li class="nav-item dropdown dropdown-slide">
+							<!--<li class="nav-item dropdown dropdown-slide">
 								<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Pages <span><i class="fa fa-angle-down"></i></span>
 								</a>
-								<!-- Dropdown list -->
 								<div class="dropdown-menu dropdown-menu-right">
 									<a class="dropdown-item" href="category.html">Category</a>
 									<a class="dropdown-item" href="single.html">Single Page</a>
@@ -90,13 +89,12 @@
 								<a class="nav-link dropdown-toggle" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Listing <span><i class="fa fa-angle-down"></i></span>
 								</a>
-								<!-- Dropdown list -->
 								<div class="dropdown-menu dropdown-menu-right">
 									<a class="dropdown-item" href="#">Action</a>
 									<a class="dropdown-item" href="#">Another action</a>
 									<a class="dropdown-item" href="#">Something else here</a>
 								</div>
-							</li>
+							</li>-->
 						</ul>
 						<ul class="navbar-nav ml-auto mt-10">
               @guest
@@ -114,15 +112,21 @@
                   </a>
 
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="{{ route('dashboard') }}">
-                          {{ __('Mi perfil') }}
-                      </a>
-                      <a class="dropdown-item" href="{{ route('dashboard.files') }}">
-                          {{ __('Referencias') }}
-                      </a>
-                      <a class="dropdown-item" href="{{ route('dashboard.postulations') }}">
-                          {{ __('Postulaciones') }}
-                      </a>
+                      @if(!Auth::user()->admin)
+                        <a class="dropdown-item" href="{{ route('dashboard') }}">
+                            {{ __('Mi perfil') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('dashboard.files') }}">
+                            {{ __('Referencias') }}
+                        </a>
+                        <a class="dropdown-item" href="{{ route('dashboard.postulations') }}">
+                            {{ __('Postulaciones') }}
+                        </a>
+                      @else
+                        <a class="dropdown-item" href="{{ route('admin') }}">
+                            {{ __('Panel administrativo') }}
+                        </a>
+                      @endif
                       <a class="dropdown-item" href="{{ route('logout') }}"
                          onclick="event.preventDefault();
                                        document.getElementById('logout-form').submit();">
@@ -164,46 +168,43 @@
           <!-- footer logo -->
           <img src="../images/logo-footer.png" alt="">
           <!-- description -->
-          <p class="alt-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <p class="alt-color">Este sitio fue desarrollado en laravel para la materia de Programación para internet por Cristian Rafael Romero Chávez</p>
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 offset-lg-1 col-md-3">
+      <div class="col-lg-4 offset-lg-1 col-md-3">
         <div class="block">
-          <h4>Site Pages</h4>
+          <h4>Paginas del front</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="#">Terms of Services</a></li>
+            <li><a href="{{ route('dashboard') }}">Mi perfil (Con sesión)</a></li>
+            <li><a href="{{ route('dashboard.files')}}">Referencias/Archivos (Con sesión)</a></li>
+            <li><a href="{{ route('dashboard.postulations') }}">Postulaciones (Con sesión)</a></li>
+            <li><a href="{{ route('front.vacante.index') }}">Vacantes (Con/Sin sesión)</a></li>
+            <li><a href="{{ route('register')}}">Registrarse (Sin sesión)</a></li>
+            <li><a href="{{ route('login') }}">Iniciar sesión (Sin sesión)</a></li>
           </ul>
         </div>
       </div>
       <!-- Link list -->
-      <div class="col-lg-2 col-md-3 offset-md-1 offset-lg-0">
+      <div class="col-lg-4 col-md-3 offset-md-1 offset-lg-0">
         <div class="block">
           <h4>Admin Pages</h4>
           <ul>
-            <li><a href="#">Boston</a></li>
-            <li><a href="#">How It works</a></li>
-            <li><a href="#">Deals & Coupons</a></li>
-            <li><a href="#">Articls & Tips</a></li>
-            <li><a href="#">Terms of Services</a></li>
+            <li><a href="{{ route('candidato.index') }}">Candidatos</a></li>
+            <li><a href="{{ route('vacante.index') }}">Vacantes</a></li>
+            <li><a href="{{ route('categoria.index') }}">Categorias</a></li>
           </ul>
         </div>
       </div>
       <!-- Promotion -->
-      <div class="col-lg-4 col-md-7">
-        <!-- App promotion -->
+      <!--<div class="col-lg-4 col-md-7">
         <div class="block-2 app-promotion">
           <a href="">
-            <!-- Icon -->
             <img src="../images/footer/phone-icon.png" alt="mobile-icon">
           </a>
           <p>Get the Dealsy Mobile App and Save more</p>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
   <!-- Container End -->
@@ -216,7 +217,7 @@
         <div class="col-sm-6 col-12">
           <!-- Copyright -->
           <div class="copyright">
-            <p>Copyright © 2016. All Rights Reserved</p>
+            <p>Copyright © 2019</p>
           </div>
         </div>
         <div class="col-sm-6 col-12">
